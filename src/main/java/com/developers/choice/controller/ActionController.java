@@ -3,6 +3,8 @@ package com.developers.choice.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.developers.choice.bo.EmployeeBO;
@@ -23,6 +26,8 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/api/v1")
 @Api(value = "action controller", description = "Operations pertaining to employee")
 public class ActionController {
+	
+	private static final Logger Logger =LoggerFactory.getLogger(ActionController.class);
 
 	@Autowired
 	private EmployeeBO employeeBO;
@@ -31,18 +36,21 @@ public class ActionController {
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public ResponseEntity<?> getEmployeeList() {
 		List<Employee> list = employeeBO.getListOfEmployee();
+		Logger.info("get employee : size : ", list.size());
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public ResponseEntity<?> getEmployeeList(@RequestBody Employee employee) {
 		List<Employee> list = employeeBO.addEmployee(employee);
+		Logger.info("add employee : size : ", list.size());
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/update", method=RequestMethod.PUT)
 	public ResponseEntity<?> updateEmployeeList(@RequestBody Employee employee, @PathVariable long id) {
 		List<Employee> list = employeeBO.addEmployee(employee);
+		Logger.info("update employee : size : ", list.size());
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
@@ -53,18 +61,20 @@ public class ActionController {
 	 * 
 	 */
 
-	@PatchMapping(value="/update")
+	@PatchMapping(value="/update")// this is just to testing purpose code
 	public ResponseEntity<?> patchEmployeeList(@RequestBody List<Employee> employeeList) {
 		List<Employee> finalList = new ArrayList<Employee>();
 		for(Employee employee : employeeList) {
 			finalList.addAll(employeeBO.updateEmployee(employee));
 		}
+		Logger.info("update patch employee : size : ", finalList.size());
 		return new ResponseEntity<>(finalList, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/delete", method=RequestMethod.DELETE)
-	public ResponseEntity<?> deleteEmployee(@RequestBody Employee employee) {
-		List<Employee> list = employeeBO.addEmployee(employee);
+	public ResponseEntity<?> deleteEmployee(@RequestParam int employeeId) {
+		List<Employee> list = employeeBO.removeEmployee(employeeId);
+		Logger.info("delete  employee : size : ", list.size());
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 }
