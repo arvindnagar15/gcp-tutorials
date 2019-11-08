@@ -1,4 +1,11 @@
 # Integrate Spring boot with swagger.
+
+#Common Commands:
+##To read deployment logs - 
+
+	gcloud app logs read tail
+
+
 #Steps : deploy to GCP
 ```
 1. Create a directory appengine under src/main
@@ -20,3 +27,10 @@
 7. mvn appengine:deploy
 
 ```
+**************************************************************
+##Common Errors:
+# 1. Application is deployed successfully, but getting Nginx: 502 bad gateway error while accessing it.
+	Add below manualy scaling:
+	manual_scaling:
+		instances: 2
+
