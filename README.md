@@ -4,6 +4,13 @@
 ##To read deployment logs - 
 
 	gcloud app logs read tail
+	
+	To deploy using mvn command - mvn appengine:deploy
+	
+	To deploy without maven plugin: 
+	
+	gcloud app deploy src/main/appengine/app.yaml
+	
 
 
 #Steps : deploy to GCP
