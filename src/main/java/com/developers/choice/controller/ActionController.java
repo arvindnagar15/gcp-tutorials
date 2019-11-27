@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.developers.choice.bo.EmployeeBO;
 import com.developers.choice.model.Employee;
 
+//import com.developers.choice.bo.EmployeeBO;
+//import com.developers.choice.model.Employee;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -31,6 +34,9 @@ public class ActionController {
 
 	@Autowired
 	private EmployeeBO employeeBO;
+
+	@Autowired
+//	HelloWorldClient client;
 	 
 	@ApiOperation(value = "Get an employee by Id")
 	@RequestMapping(value="/list", method=RequestMethod.GET)
@@ -77,4 +83,16 @@ public class ActionController {
 		Logger.info("delete  employee : size : ", list.size());
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
+
+//	@RequestMapping(value="/grpcName", method = RequestMethod.POST)
+//	public ResponseEntity<?> getNames(String name){
+//		HelloReply reply = null;
+//		try {
+//			reply = client.getNameData(name);
+//			Logger.info("reply: ", reply.getMessage());
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}
+//		return new ResponseEntity<>(reply, HttpStatus.OK);
+//	}
 }
