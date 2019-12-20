@@ -8,7 +8,7 @@ option objc_class_prefix = "HLW";
 package helloworld;
 
 // The greeting service definition.
-service OreDemand {
+service MyGrpcService {
   // Sends a greeting
   rpc SayHello (HelloRequest) returns (HelloReply) {}
 }

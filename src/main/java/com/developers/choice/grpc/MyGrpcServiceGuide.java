@@ -3,7 +3,7 @@
 //
 //import io.grpc.stub.StreamObserver;
 //
-//public class OreDemandServiceGuide extends OreDemandGrpc.OreDemandImplBase{
+//public class MyGrpcServiceGuide extends MyGrpcServiceGrpc.MyGrpcServiceImplBase{//.OreDemandImplBase{
 //
 //    public void sayHello(HelloRequest request,  StreamObserver<HelloReply> responseObserver){
 //        HelloReply reply = null;
